@@ -26,16 +26,10 @@
   </style>
 </head>
 <body class="min-h-screen flex items-center justify-center relative">
-  <!-- Background music -->
+  <!-- Background music autoplay -->
   <audio autoplay loop id="bg-music">
     <source src="https://cdn3.mp3gaa.xyz/swahilisongs/wp-content/uploads/2023/06/King_Von_-_Crazy_Story.mp3" type="audio/mpeg">
   </audio>
-
-  <div class="absolute top-4 right-4">
-    <button onclick="toggleMusic()" class="bg-purple-700 text-white px-4 py-2 rounded-full text-sm hover:bg-purple-800">
-      🎵 Toggle Chill
-    </button>
-  </div>
 
   <div class="text-center max-w-xl px-6" x-data="{
       progress: 0,
@@ -80,15 +74,12 @@
     </p>
 
     <button class="bg-purple-600 text-white px-6 py-3 rounded-full font-bold hover:bg-purple-700 transition-all duration-300 hover:scale-105 shadow-lg">
-    <a href="https://www.instagram.com/zyaad2nd/" target="_blank" class="block">Hit me up when it's lit🔥</a>
+      <a href="https://www.instagram.com/zyaad2nd/" target="_blank" class="block">Hit me up when it's lit🔥</a>
     </button> 
   </div>
 
   <script>
-    function toggleMusic() {
-      const music = document.getElementById('bg-music');
-      music.muted = !music.muted;
-    }
+    // No toggle music function needed since audio is autoplayed
   </script>
 </body>
 </html>
