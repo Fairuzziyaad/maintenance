@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We Cookin' 🔧</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    @keyframes gear-rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .gear-animation {
+      animation: gear-rotate 4s linear infinite;
+    }
+    .neon {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9333ea,
+                   0 0 20px #9333ea, 0 0 25px #9333ea;
+    }
+    body {
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative">
+  <!-- Background music -->
+  <audio autoplay loop id="bg-music">
+    <source src="https://cdn3.mp3gaa.xyz/swahilisongs/wp-content/uploads/2023/06/King_Von_-_Crazy_Story.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="absolute top-4 right-4">
+    <button onclick="toggleMusic()" class="bg-purple-700 text-white px-4 py-2 rounded-full text-sm hover:bg-purple-800">
+      🎵 Toggle Chill
+    </button>
+  </div>
+
+  <div class="text-center max-w-xl px-6" x-data="{
+      progress: 0,
+      score: 0,
+      quotes: [
+        'Keep grindin’ 👊',
+        'Big things comin’ 🚀',
+        'We ain’t done yet 🔧',
+        'Patchin’ the Matrix 🕶️',
+        'Stay sharp, fam 💯'
+      ],
+      current: 0
+    }"
+    x-init="
+      setInterval(() => {
+        if (progress < 100) progress += 0.5;
+      }, 25);
+      setInterval(() => current = (current + 1) % quotes.length, 4000);
+    ">
+
+    <!-- Animated Gear Game -->
+    <svg @click="score += 1" class="w-24 h-24 text-purple-500 opacity-30 mx-auto gear-animation hover:opacity-100 cursor-pointer transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+    </svg>
+
+    <h1 class="text-5xl font-extrabold text-white neon mb-6 animate-bounce">
+      Yo, Chill! We Cookin’ 🔧
+    </h1>
+
+    <div class="w-full bg-gray-700 rounded-full h-4 mb-6">
+      <div class="bg-purple-500 h-4 rounded-full transition-all duration-300" :style="`width: ${progress}%`"></div>
+    </div>
+
+    <p class="text-purple-300 text-lg mb-2 animate-pulse">
+      Hold up, we patchin’ things up. This site ’bout to glow soon 🔥
+    </p>
+
+    <p class="text-purple-200 italic mb-4" x-text="quotes[current]"></p>
+
+    <p class="text-purple-300 mb-4">
+      Your clicks: <span class="font-bold" x-text="score"></span>
+    </p>
+
+    <button class="bg-purple-600 text-white px-6 py-3 rounded-full font-bold hover:bg-purple-700 transition-all duration-300 hover:scale-105 shadow-lg">
+    <a href="https://www.instagram.com/zyaad2nd/" target="_blank" class="block">Hit me up when it's lit🔥</a>
+    </button> 
+  </div>
+
+  <script>
+    function toggleMusic() {
+      const music = document.getElementById('bg-music');
+      music.muted = !music.muted;
+    }
+  </script>
+</body>
+</html>
